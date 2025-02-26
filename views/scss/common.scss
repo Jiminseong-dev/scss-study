@@ -1,0 +1,17 @@
+$mainColor: red;
+$color-primary: #e96900;
+$w: 200px;
+$red: $mainColor;
+
+h3 {
+  color: $red;
+}
+.box {
+  $color-primary: #eee !default;
+  width: $w;
+  margin-left: $w;
+  background: $color-primary;
+}
+p {
+  color: $color-primary;
+}
