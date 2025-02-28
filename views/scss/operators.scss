@@ -1,0 +1,56 @@
+// operators study
+// ----------------------------------------------------------------
+
+// 일반적으로 절댓값을 나타내는 px 단위로 연산을 한다. 상대적 단위(%, em, vw 등)의 경우 calc()로 연산
+/*
+    width : 50% - 20px; 단위 모순에러 발생
+    width : calc(50% - 20px) 연산 가능
+*/
+
+// 나누기 연산의 주의사항
+div {
+  width: 20px + 20px;
+  height: 40px - 10px;
+  font-size: 10px * 2;
+  margin: 30px / 2;
+}
+
+// css compile
+div {
+  width: 40px; /* OK */
+  height: 30px; /* OK */
+  font-size: 20px; /* OK */
+  margin: 30px / 2; /* ?? */
+}
+
+// 따라서 / 를 나누기 연산 기능으로 사용하려면
+// 1, 값 또는 그 일부가 변수에 저장되거나 함수의 의해 반환되는 경우
+// 2. 값이 ()로 묶여있는 경우
+// 3. 값이 다른 산술 표현식의 일부로 사요되는 경우 사용
+div {
+  $x: 100px;
+  width: $w / 2; // 변수에 값 저장 사용
+  height: (100px / 2); // 괄호 묶어서 사용
+  font-size: 10px + 12px /2; // 더하기 연산자오ㅑㅏ 같이 사용
+}
+
+//css compile
+div {
+  width: 50px;
+  height: 50px;
+  font-size: 14px;
+}
+
+// 문자
+// 문자 연산의 결과는 첫번째 피연산자를 기준으로 한다.
+// 첫번째 피연산자에 따움표가 붙어있다면 연산 결과를 따움표 묶는다.
+// 반대로 첫번째 피연산자에 따옴표가 붙어있지 않다면 연산 결과도  따움표로 처리하지 않는다.
+div::after {
+  content: "Hello " + World;
+  flex-flow: row + "-reverse" + " " + wrap;
+}
+//css compile
+div::after {
+  content: "Hello World";
+  flex-flow: row-reverse wrap;
+}
