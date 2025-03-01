@@ -1,0 +1,21 @@
+// @import directive를 사용해서 특정 scss 파일을 불러올 수 있다.
+// 확장자를 붙이지 않아도 된다.
+// @import "operators";
+@import "operators.scss";
+
+// Sass @import 는 기본적으로 sass 파일을 가져오는데 Css @import 규칙으로 컴파일 되는 몇가지 상황이 있다.
+/**
+* - 파일 확장자가 css 일때
+* - 파일 이름이 http://로 시작하는 경우
+* - url()이 붙었을 경우
+* - 미디어 쿼리가 있는 경우
+**/
+@import "hello.css";
+@import "http://hello.com/hello";
+@import url(hello);
+@import "hello" screen;
+@import "header", "footer"; //여러 파일 가져오기
+
+// 파일 분할(Partials)
+// Sass는 Partials 기능을 지원한다.
+// 파일 이름 앞에 _를 붙여 (_header.scss) @import 가져올 시 ~css 파일로 컴파이 되지 않는다.
