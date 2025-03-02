@@ -1,0 +1,148 @@
+// Sass Mixin는 스타일 시트 전체에서 재사용 할 Css 선언 그룹을 정의하는 기능
+// 선언할 때는 @mixin을 사용하며, 이를 사용할 때는 @include를 사용
+@mixin lager-text {
+  font: {
+    size: 22px;
+    weight: bold;
+    family: sans-serif;
+  }
+  color: orange;
+
+  &::after {
+    content: "!!";
+  }
+
+  span.icon {
+    background: url("image");
+  }
+}
+
+h1 {
+  @include lager-text;
+}
+div {
+  @include lager-text;
+}
+
+//mixin은 함수(Functions)처럼 인수(Arguments)를 가질 수 있다.
+@mixin dash-line($width, $color) {
+  border: $width dashed $color;
+}
+
+.box1 {
+  @include dash-line(1px, red);
+}
+.box2 {
+  @include dash-line(4px, blue);
+}
+
+// 기본 값 설정
+@mixin dash-line($width: 1px, $color: black) {
+  border: $width dashed $color;
+}
+.box1 {
+  @include dash-line;
+}
+.box2 {
+  @include dash-line(4px);
+}
+
+//키워드 인수
+// mixin에 전달할 인수를 입력할 때 명시적으로 변수(키워드)를 입력하여 작성
+@mixin position($p: absolute, $t: null, $b: null, $l: null, $r: null) {
+  position: $p;
+  top: $t;
+  bottom: $b;
+  left: $l;
+  right: $r;
+}
+.absolute {
+  // 키워드로 인수를 설정할 값만 전달
+  @include position($b: 10px, $r: 20px);
+}
+.fixed {
+  @include position(fixed, $t: 30px, $r: 40px);
+}
+
+// 가변 인수
+// 때때로 입력할 인수의 개수가 불확실한 경우가 있다.
+@mixin bg($width, $height, $bg-values...) {
+  width: $width;
+  height: $height;
+  background: $bg-values;
+}
+
+div {
+  @include bg(
+    100px,
+    200px,
+    url("images/1") no-repeat 10px 20px,
+    url("images/2") no-repeat,
+    url("images/3")
+  );
+}
+
+@mixin font($style: normal, $weight: normal, $size: 16px, $family: sans-serif) {
+  font: {
+    style: $style;
+    weight: $weight;
+    size: $size;
+    family: $family;
+  }
+}
+
+div {
+  // 매개변수 순서와 개수에 맞게 전달
+  $font-values: italic, bold, 16px, sans-serif;
+  @include font($font-values...);
+}
+span {
+  // 필요한 값만 키워드 인수로 변수에 담아 전달
+  $font-values: (
+    style: italic,
+    size: 22px,
+  );
+  @include font($font-values...);
+}
+a {
+  //필요한 값만 키워드 인수로 전달
+  //@include font((width: 900, family: monospace)...);
+}
+
+//@content
+// 선언된 mixin에 @content이 포함되어 있으면 해당 부분에 원하는 스타일 블록을 전달할 수 있다.
+@mixin icon($url) {
+  &::after {
+    content: $url;
+    @content;
+  }
+}
+.icon1 {
+  @include icon("image/icon1");
+}
+.icon2 {
+  @include icon("image/icon2") {
+    position: absolute;
+  }
+}
+
+// function
+// mixin과의 차이점은 mixin style markup을 반환하지만
+// function은 @return 을 통하여 값을 반환한다.
+$max-width: 900px;
+@function columns($number: 1, $columns: 12) {
+  @return $max-width * ($number / $columns);
+}
+
+.bax_group {
+  width: $max-width;
+  .box1 {
+    width: columns();
+  }
+  .box2 {
+    width: columns(8);
+  }
+  .box3 {
+    width: columns(3);
+  }
+}

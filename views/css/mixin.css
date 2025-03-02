@@ -1,0 +1,95 @@
+h1 {
+  font-size: 22px;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: orange;
+}
+h1::after {
+  content: "!!";
+}
+h1 span.icon {
+  background: url("image");
+}
+
+div {
+  font-size: 22px;
+  font-weight: bold;
+  font-family: sans-serif;
+  color: orange;
+}
+div::after {
+  content: "!!";
+}
+div span.icon {
+  background: url("image");
+}
+
+.box1 {
+  border: 1px dashed red;
+}
+
+.box2 {
+  border: 4px dashed blue;
+}
+
+.box1 {
+  border: 1px dashed black;
+}
+
+.box2 {
+  border: 4px dashed black;
+}
+
+.absolute {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+
+.fixed {
+  position: fixed;
+  top: 30px;
+  right: 40px;
+}
+
+div {
+  width: 100px;
+  height: 200px;
+  background: url("images/1") no-repeat 10px 20px, url("images/2") no-repeat, url("images/3");
+}
+
+div {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: sans-serif;
+}
+
+span {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 22px;
+  font-family: sans-serif;
+}
+
+.icon1::after {
+  content: "image/icon1";
+}
+
+.icon2::after {
+  content: "image/icon2";
+  position: absolute;
+}
+
+.bax_group {
+  width: 900px;
+}
+.bax_group .box1 {
+  width: 75px;
+}
+.bax_group .box2 {
+  width: 600px;
+}
+.bax_group .box3 {
+  width: 225px;
+}
