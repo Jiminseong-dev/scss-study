@@ -1,0 +1,96 @@
+$width: 555px;
+div {
+  // 인라인 if
+  width: if($width > 300px, $width, null);
+}
+
+//@if
+@function limitSize($size) {
+  @if $size >= 0 and $size <= 200px {
+    @return 200px;
+  } @else {
+    @return 800px;
+  }
+}
+div {
+  width: limitSize(180px);
+  height: limitSize(340px);
+}
+
+//@for
+// through를 사용하는 방식과 to를 사용하는 형식으로 나누니다.
+// through는 종류 만큼 반복, to는 종료 직전까지 반복
+// 1부터 3번 반복
+@for $i from 1 through 3 {
+  .through:nth-child(#{$i}) {
+    width: 20px * $i;
+  }
+}
+// 1부터 3번 직전까지 반복 2번
+@for $i from 1 to 3 {
+  .to:nth-child(#{$i}) {
+    width: 20px * $i;
+  }
+}
+
+//리스트 순회
+$color_list: (#4285f4, #ea4335, #fbbc05, #4285f4, #34a853, #ea4335);
+@for $i from 1 through length($color_list) {
+  span:nth-child(#{$i}) {
+    color: nth($color_list, $i);
+  }
+}
+
+//@each
+// each는 list와 map 데이터를 반복할 떄 사용
+$fruits: (apple, orange, banana, mango);
+
+.fruits {
+  @each $fruit in $fruits {
+    li.#{$fruit} {
+      background: url("/image/#{$fruit}");
+    }
+  }
+}
+
+// index값이 필요하다면
+.fruits {
+  @each $fruit in $fruits {
+    $i: index($fruits, $fruit);
+    li:nth-chile(#{$i}) {
+      left: 50px * $i;
+    }
+  }
+}
+
+// 여러개의 리스트
+$apple: (apple, korea);
+$orange: (orange, china);
+$banana: (banana, japan);
+
+@each $fruit, $country in $apple, $orange, $banana {
+  .box-#{$fruit} {
+    background: url("image/#{$country}");
+  }
+}
+
+//map
+$fruits-data: (
+  apple: korea,
+  orange: china,
+  banana: japan,
+);
+
+@each $fruit, $country in $fruits-data {
+  .box-#{$fruit} {
+    background: url("/image/#{$country}");
+  }
+}
+
+// while
+$i: 6;
+@while $i > 0 {
+  .item-#{$i} {
+    width: 2px * $i;
+  }
+}

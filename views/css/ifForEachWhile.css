@@ -1,0 +1,102 @@
+div {
+  width: 555px;
+}
+
+div {
+  width: 200px;
+  height: 800px;
+}
+
+.through:nth-child(1) {
+  width: 20px;
+}
+
+.through:nth-child(2) {
+  width: 40px;
+}
+
+.through:nth-child(3) {
+  width: 60px;
+}
+
+.to:nth-child(1) {
+  width: 20px;
+}
+
+.to:nth-child(2) {
+  width: 40px;
+}
+
+span:nth-child(1) {
+  color: #4285f4;
+}
+
+span:nth-child(2) {
+  color: #ea4335;
+}
+
+span:nth-child(3) {
+  color: #fbbc05;
+}
+
+span:nth-child(4) {
+  color: #4285f4;
+}
+
+span:nth-child(5) {
+  color: #34a853;
+}
+
+span:nth-child(6) {
+  color: #ea4335;
+}
+
+.fruits li.apple {
+  background: url("/image/apple");
+}
+.fruits li.orange {
+  background: url("/image/orange");
+}
+.fruits li.banana {
+  background: url("/image/banana");
+}
+.fruits li.mango {
+  background: url("/image/mango");
+}
+
+.fruits li:nth-chile(1) {
+  left: 50px;
+}
+.fruits li:nth-chile(2) {
+  left: 100px;
+}
+.fruits li:nth-chile(3) {
+  left: 150px;
+}
+.fruits li:nth-chile(4) {
+  left: 200px;
+}
+
+.box-apple {
+  background: url("image/korea");
+}
+
+.box-orange {
+  background: url("image/china");
+}
+
+.box-banana {
+  background: url("image/japan");
+}
+
+.box-apple {
+  background: url("/image/korea");
+}
+
+.box-orange {
+  background: url("/image/china");
+}
+
+.box-banana {
+  background: url("/image/japan");
+}
